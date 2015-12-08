@@ -9,6 +9,7 @@
     </available>
   </availableList>
   <created>Tue Dec 08 11:42:03 IST 2015</created>
+  <cwfBuildID>1</cwfBuildID>
   <internalName>eshop</internalName>
   <internalVersion>1</internalVersion>
   <label>EShop</label>
@@ -17,5 +18,8 @@
     <rightToLeft>false</rightToLeft>
   </locale>
   <metaVersion>25</metaVersion>
-  <metadataVersion>20150618</metadataVersion>
+  <metadataVersion>20150616</metadataVersion>
+  <templateList>
+    <template>ecm</template>
+  </templateList>
 </header>
