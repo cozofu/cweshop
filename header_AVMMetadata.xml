@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<header name="AVMMetadata">
+  <APIVersion>2</APIVersion>
+  <author>Unknown</author>
+  <availableList>
+    <available type="loc">
+      <locale>en</locale>
+      <rightToLeft>false</rightToLeft>
+    </available>
+  </availableList>
+  <created>Tue Dec 08 11:42:03 IST 2015</created>
+  <label>EShop</label>
+  <locale type="loc">
+    <locale>en</locale>
+    <rightToLeft>false</rightToLeft>
+  </locale>
+  <metaVersion>25</metaVersion>
+  <metadataVersion>20150618</metadataVersion>
+</header>
