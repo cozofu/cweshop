@@ -24,7 +24,20 @@
             <override name="HorizontalLayoutForMenuItems" type="elext">
               <elementList>
                 <element name="MenuItem" type="elmnu">
+                  <clickMethod type="varPath">
+                    <variablePathList>
+                      <variablePath>ui_arun.application/usrActionMethod_login</variablePath>
+                    </variablePathList>
+                  </clickMethod>
                   <label>login</label>
+                </element>
+                <element name="MenuItem1" type="elmnu">
+                  <clickMethod type="varPath">
+                    <variablePathList>
+                      <variablePath>ui_arun.application/usrActionMethod_register</variablePath>
+                    </variablePathList>
+                  </clickMethod>
+                  <label>NewUser?register</label>
                 </element>
               </elementList>
             </override>
@@ -34,11 +47,54 @@
           <base>ui_com.conceptwave.system.UserInterface/frmui_Forms/vform_Default</base>
           <extends>ui_com.conceptwave.system.UserInterface/frmui_Forms/vform_Default</extends>
           <label>Default</label>
+          <overrideList>
+            <override name="GridLayout" type="elgrd">
+              <numOfCols>2</numOfCols>
+              <elementList>
+                <element name="userName" type="elfld">
+                  <label>User Name</label>
+                  <variable type="varPath">
+                    <variablePathList>
+                      <variablePath>ui_arun.application/leaf_userName</variablePath>
+                    </variablePathList>
+                  </variable>
+                </element>
+                <element name="password" type="elfld">
+                  <label>password</label>
+                  <variable type="varPath">
+                    <variablePathList>
+                      <variablePath>ui_arun.application/leaf_password</variablePath>
+                    </variablePathList>
+                  </variable>
+                </element>
+                <element name="Button" type="elbtn">
+                  <clickMethod type="varPath">
+                    <variablePathList>
+                      <variablePath>ui_arun.application/usrActionMethod_submit</variablePath>
+                    </variablePathList>
+                  </clickMethod>
+                  <label>submit</label>
+                </element>
+              </elementList>
+            </override>
+          </overrideList>
         </overlay>
       </overlayList>
     </vform>
   </vformList>
   <methodList>
+    <method name="error" type="crule">
+      <path>ui_arun.application/leaf_userName</path>
+      <severity>error</severity>
+      <type>validator</type>
+      <valueType>dtype_com.conceptwave.system.Boolean</valueType>
+      <script><![CDATA[
+        if(this.userName==null || this.userName.length<1)
+        {
+            return true;
+        }
+      ]]></script>
+    </method>
     <method name="errror1" type="crule">
       <path>ui_arun.application/leaf_password</path>
       <severity>error</severity>
@@ -46,18 +102,6 @@
       <valueType>dtype_com.conceptwave.system.Boolean</valueType>
       <script><![CDATA[
         if(this.password==null || this.password.length<1)
-        {
-            return true;
-        }
-      ]]></script>
-    </method>
-    <method name="error" type="crule">
-      <path>ui_arun.application/leaf_userName</path>
-      <severity>error</severity>
-      <type>validator</type>
-      <valueType>dtype_com.conceptwave.system.Boolean</valueType>
-      <script><![CDATA[
-        if(this.userName==null && this.userName.length<1)
         {
             return true;
         }
@@ -71,6 +115,20 @@
     <method name="onValidate" type="action">
       <valueType>dtype_com.conceptwave.system.Boolean</valueType>
       <script>return this.cw$super_onValidate();</script>
+    </method>
+    <method name="submit" type="usrActionMethod">
+      <script><![CDATA[
+        if(this.cw$super_onValidate())
+        {
+        Global.showUserMessage("submitted");
+        return this.cw$super_onValidate();
+        }
+      ]]></script>
+    </method>
+    <method name="register" type="usrActionMethod">
+      <form>doc_arun.registerUser/ui_UserInterface/frmui_Forms/exov_Default</form>
+      <userInterface>doc_arun.registerUser</userInterface>
+      <valueType>doc_arun.registerUser</valueType>
     </method>
   </methodList>
 </userInterface>

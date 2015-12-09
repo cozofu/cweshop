@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<document name="arun.registerUser">
+  <dbSchema>ORDER</dbSchema>
+  <extends>doc_com.conceptwave.system.Document</extends>
+  <guid>{81b10453-0580-4f8f-b99f-2fe9a2159317}</guid>
+  <label>Register User</label>
+  <metaVersion>25</metaVersion>
+  <variableList>
+    <variable name="userName" type="leaf">
+      <column>USERNAME</column>
+      <key>1</key>
+      <table>registerUser</table>
+      <valueType>dtype_cwt_common.string32</valueType>
+    </variable>
+    <variable name="emailID" type="leaf">
+      <column>EMAILID</column>
+      <table>registerUser</table>
+      <valueType>dtype_cwt_common.string32</valueType>
+    </variable>
+    <variable name="password" type="leaf">
+      <column>PASSWORD</column>
+      <table>registerUser</table>
+      <valueType>dtype_cwt_common.string32</valueType>
+    </variable>
+    <variable name="confirmPassword" type="leaf">
+      <column>CONFIRMPASSWORD</column>
+      <table>registerUser</table>
+      <valueType>dtype_cwt_common.string32</valueType>
+    </variable>
+  </variableList>
+  <methodList>
+    <method name="error1" type="crule">
+      <path>doc_arun.registerUser/leaf_password</path>
+      <severity>error</severity>
+      <type>validator</type>
+      <valueType>dtype_com.conceptwave.system.Boolean</valueType>
+      <script><![CDATA[
+        if(this.password==null || this.password.length<1)
+        {
+            return true;
+        }
+      ]]></script>
+    </method>
+    <method name="error" type="crule">
+      <path>doc_arun.registerUser/leaf_userName</path>
+      <severity>error</severity>
+      <type>validator</type>
+      <valueType>dtype_com.conceptwave.system.Boolean</valueType>
+      <script><![CDATA[
+        if(this.userName==null || this.userName.length<1)
+        {
+            return true;
+        }
+      ]]></script>
+    </method>
+  </methodList>
+  <UserInterface name="UserInterface" type="ui">
+    <extends>doc_com.conceptwave.system.Document/ui_UserInterface</extends>
+    <variableList>
+      <variable name="model" type="uivar">
+        <label>model</label>
+        <valueType>doc_arun.registerUser</valueType>
+      </variable>
+    </variableList>
+    <vformList>
+      <vform name="Forms" type="frmui">
+        <extends>doc_com.conceptwave.system.Document/ui_UserInterface/frmui_Forms</extends>
+        <overlayList>
+          <overlay name="Default" type="exov">
+            <base>ui_com.conceptwave.system.DocumentUserInterface/frmui_Forms/exov_Default</base>
+            <extends>ui_com.conceptwave.system.DocumentUserInterface/frmui_Forms/exov_Default</extends>
+            <label>Default</label>
+            <overrideList>
+              <override name="GridLayout" type="elgrd">
+                <numOfCols>2</numOfCols>
+                <elementList>
+                  <element name="userName" type="elfld">
+                    <label>User Name</label>
+                    <variable type="varPath">
+                      <variablePathList>
+                        <variablePath>doc_arun.registerUser/ui_UserInterface/uivar_model</variablePath>
+                        <variablePath>doc_arun.registerUser/leaf_userName</variablePath>
+                      </variablePathList>
+                    </variable>
+                  </element>
+                  <element name="emailID" type="elfld">
+                    <label>email ID</label>
+                    <variable type="varPath">
+                      <variablePathList>
+                        <variablePath>doc_arun.registerUser/ui_UserInterface/uivar_model</variablePath>
+                        <variablePath>doc_arun.registerUser/leaf_emailID</variablePath>
+                      </variablePathList>
+                    </variable>
+                  </element>
+                  <element name="password" type="elfld">
+                    <label>password</label>
+                    <variable type="varPath">
+                      <variablePathList>
+                        <variablePath>doc_arun.registerUser/ui_UserInterface/uivar_model</variablePath>
+                        <variablePath>doc_arun.registerUser/leaf_password</variablePath>
+                      </variablePathList>
+                    </variable>
+                  </element>
+                  <element name="confirmPassword" type="elfld">
+                    <label>Confirm Password</label>
+                    <variable type="varPath">
+                      <variablePathList>
+                        <variablePath>doc_arun.registerUser/ui_UserInterface/uivar_model</variablePath>
+                        <variablePath>doc_arun.registerUser/leaf_confirmPassword</variablePath>
+                      </variablePathList>
+                    </variable>
+                  </element>
+                  <element name="Button" type="elbtn">
+                    <clickMethod type="varPath">
+                      <variablePathList>
+                        <variablePath>doc_arun.registerUser/ui_UserInterface/usrActionMethod_submit</variablePath>
+                      </variablePathList>
+                    </clickMethod>
+                    <label>submit</label>
+                  </element>
+                </elementList>
+              </override>
+            </overrideList>
+          </overlay>
+        </overlayList>
+      </vform>
+    </vformList>
+    <methodList>
+      <method name="onValidate" type="action">
+        <valueType>dtype_com.conceptwave.system.Boolean</valueType>
+        <script>return this.cw$super_onValidate();</script>
+      </method>
+      <method name="submit" type="usrActionMethod">
+        <script>this.model.save();</script>
+      </method>
+    </methodList>
+  </UserInterface>
+</document>
