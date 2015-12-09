@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project>
-  <DefaultDB>DUMMY</DefaultDB>
+  <DefaultDB>DBCON</DefaultDB>
   <applicationString>eshop</applicationString>
   <applicationVersionString>1</applicationVersionString>
+  <breakpointMap>
+    <breakpoint key="testNameSpace.myScript">0</breakpoint>
+  </breakpointMap>
   <databasesMap>
+    <databases key="DBCON" type=".configdb">
+      <dbname>DBCON</dbname>
+      <driver type=".dbdriver">
+        <attributes>localhost;1521;orcl;false</attributes>
+        <driverType>Oracle thin</driverType>
+      </driver>
+      <password>3758E06524884B5B</password>
+      <user>CWOJT</user>
+    </databases>
     <databases key="DUMMY" type=".configdb">
       <dbname>DUMMY</dbname>
       <driver type=".dbdriver">
@@ -16,6 +28,7 @@
   </databasesMap>
   <excludedBuildWar>.bak</excludedBuildWar>
   <excludedResource>.svn</excludedResource>
+  <joinCluster>true</joinCluster>
   <nodeString>PE_UI</nodeString>
   <skin>Enterprise</skin>
 </project>
