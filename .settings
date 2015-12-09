@@ -10,11 +10,11 @@
     <databases key="DBCON" type=".configdb">
       <dbname>DBCON</dbname>
       <driver type=".dbdriver">
-        <attributes>localhost;1521;orcl;false</attributes>
+        <attributes>localhost;1522;xe;false</attributes>
         <driverType>Oracle thin</driverType>
       </driver>
-      <password>3758E06524884B5B</password>
-      <user>CWOJT</user>
+      <password>965449DE3DB045FE</password>
+      <user>cw</user>
     </databases>
     <databases key="DUMMY" type=".configdb">
       <dbname>DUMMY</dbname>

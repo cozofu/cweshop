@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<userInterface name="arun.application">
+  <extends>ui_com.conceptwave.system.Application</extends>
+  <label>application</label>
+  <metaVersion>25</metaVersion>
+  <url>/application</url>
+  <variableList>
+    <variable name="userName" type="leaf">
+      <valueType>dtype_cwt_common.string32</valueType>
+    </variable>
+    <variable name="password" type="leaf">
+      <valueType>dtype_cwt_common.string32</valueType>
+    </variable>
+  </variableList>
+  <vformList>
+    <vform name="Forms" type="frmui">
+      <extends>ui_com.conceptwave.system.Application/frmui_Forms</extends>
+      <overlayList>
+        <overlay name="Menu" type="exov">
+          <base>ui_com.conceptwave.system.Application/frmui_Forms/exov_Menu</base>
+          <extends>ui_com.conceptwave.system.Application/frmui_Forms/exov_Menu</extends>
+          <label>Menu</label>
+          <overrideList>
+            <override name="HorizontalLayoutForMenuItems" type="elext">
+              <elementList>
+                <element name="MenuItem" type="elmnu">
+                  <label>login</label>
+                </element>
+              </elementList>
+            </override>
+          </overrideList>
+        </overlay>
+        <overlay name="Default" type="exov">
+          <base>ui_com.conceptwave.system.UserInterface/frmui_Forms/vform_Default</base>
+          <extends>ui_com.conceptwave.system.UserInterface/frmui_Forms/vform_Default</extends>
+          <label>Default</label>
+        </overlay>
+      </overlayList>
+    </vform>
+  </vformList>
+  <methodList>
+    <method name="errror1" type="crule">
+      <path>ui_arun.application/leaf_password</path>
+      <severity>error</severity>
+      <type>validator</type>
+      <valueType>dtype_com.conceptwave.system.Boolean</valueType>
+      <script><![CDATA[
+        if(this.password==null || this.password.length<1)
+        {
+            return true;
+        }
+      ]]></script>
+    </method>
+    <method name="error" type="crule">
+      <path>ui_arun.application/leaf_userName</path>
+      <severity>error</severity>
+      <type>validator</type>
+      <valueType>dtype_com.conceptwave.system.Boolean</valueType>
+      <script><![CDATA[
+        if(this.userName==null && this.userName.length<1)
+        {
+            return true;
+        }
+      ]]></script>
+    </method>
+    <method name="login" type="usrActionMethod">
+      <form>ui_com.conceptwave.system.UserInterface/frmui_Forms/vform_Default</form>
+      <userInterface>ui_arun.application</userInterface>
+      <valueType>ui_arun.application</valueType>
+    </method>
+    <method name="onValidate" type="action">
+      <valueType>dtype_com.conceptwave.system.Boolean</valueType>
+      <script>return this.cw$super_onValidate();</script>
+    </method>
+  </methodList>
+</userInterface>
